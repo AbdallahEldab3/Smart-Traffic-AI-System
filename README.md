@@ -14,7 +14,7 @@ This project contains a suite of AI systems for **smart traffic management**, de
 1. **Traffic Light Optimization** – Dynamically controls traffic signals based on real-time vehicle density.
 2. **Wrong Parking Detection** – Detects stationary vehicles and identifies wrongly parked cars.
 3. **Wrong Way Detection** – Monitors traffic lanes for vehicles moving in the wrong direction.
-4. **Accident Detection** – Identifies accidents on the road by detecting abnormal vehicle motion or stoppages.
+4. **Accident Detection [prototype only - planned for final phase]** – Identifies accidents on the road by detecting abnormal vehicle motion or stoppages.
 
 The system combines **YOLOv8 object detection**, **DeepSORT tracking**, and optional **Firebase integration** for real-time reporting.
 
