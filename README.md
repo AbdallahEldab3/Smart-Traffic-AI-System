@@ -1,54 +1,173 @@
-AI-Powered Smart Traffic Management System
-Embedded Computer Vision | Real-Time Traffic Optimization | Mobile Integration | On-Road Deployment Approved
 
-I led the design and implementation of a fully embedded, AI-driven smart traffic system capable of dynamically controlling traffic lights based on real-time road conditions using computer vision. The system also detects traffic violations and enables direct response workflows for city authorities.
+---
 
-🔹 System Capabilities
-Dynamic Traffic Light Control: Real-time traffic density analysis from camera feeds, optimizing signal timing to reduce congestion and improve vehicle flow.
+# **Smart Traffic AI System**
 
-Violation and Anomaly Detection:
+**Embedded Computer Vision | Real-Time Traffic Optimization | Wrong Parking & Wrong Way Detection | Accident Detection**
 
-Wrong-way driving detection
+---
 
-Illegally parked vehicle detection
+## **Project Overview**
 
-Accident detection through abnormal motion tracking and vehicle stoppage
+This project contains a suite of AI systems for **smart traffic management**, designed for **real-time vehicle monitoring, anomaly detection, and traffic optimization**:
 
-Mobile App Integration:
+1. **Traffic Light Optimization** – Dynamically controls traffic signals based on real-time vehicle density.
+2. **Wrong Parking Detection** – Detects stationary vehicles and identifies wrongly parked cars.
+3. **Wrong Way Detection** – Monitors traffic lanes for vehicles moving in the wrong direction.
+4. **Accident Detection** – Identifies accidents on the road by detecting abnormal vehicle motion or stoppages.
 
-For Citizens: A user-facing mobile application allows commuters to monitor live road conditions and receive alerts on congestion or incidents.
+The system combines **YOLOv8 object detection**, **DeepSORT tracking**, and optional **Firebase integration** for real-time reporting.
 
-For Authorities: A control interface provides real-time violation reports and anomaly notifications to enable fast decision-making and remote intervention.
+---
 
-🔹 Prototype Phase
-Hardware: ESP32, toy vehicle models, and a Tapo C100 camera to simulate traffic environments.
+## **Architecture**
 
-Software: Lightweight YOLO models for real-time object detection; custom firmware to simulate traffic light states based on observed vehicle flow.
+```text
+             ┌─────────────────────────┐
+             │        Camera/Video     │
+             │  (Webcam, IP, MP4)     │
+             └─────────┬──────────────┘
+                       │
+                       ▼
+             ┌─────────────────────────┐
+             │   Preprocessing Module  │
+             │ - Resize frames         │
+             │ - Split lanes (traffic)│
+             └─────────┬──────────────┘
+                       │
+                       ▼
+    ┌───────────────────────────┐
+    │       YOLOv8 Detection     │
+    │ - Vehicle detection        │
+    │ - Wrong parking detection  │
+    │ - Wrong way detection      │
+    │ - Accident detection       │
+    └─────────┬───────────────┘
+              │
+              ▼
+    ┌───────────────────────────┐
+    │   Tracking & Analysis      │
+    │ - DeepSORT tracking        │
+    │ - Stationary vehicle calc  │
+    │ - Lane direction analysis  │
+    │ - Abnormal motion analysis │
+    └─────────┬───────────────┘
+              │
+              ▼
+    ┌───────────────────────────┐
+    │ Visualization & Control    │
+    │ - Traffic light signals    │
+    │ - Bounding boxes & labels  │
+    │ - Accident alerts          │
+    │ - Live video stream        │
+    └─────────┬───────────────┘
+              │
+              ▼
+    ┌───────────────────────────┐
+    │   Optional Cloud Services  │
+    │ - Firebase status updates  │
+    │ - Alerts & dashboard       │
+    └───────────────────────────┘
+```
 
-🔹 Funded System Upgrade
-Following initial success, the project received funding from the Academy of Scientific Research and Technology (ASRT) to develop a full-scale embedded solution:
+---
 
-Hardware:
+## **Folder Structure**
 
-Raspberry Pi 5 (8GB RAM) for onboard AI inference and control logic
+```text
+traffic_ai_system/
+│
+├── inference.py         # Unified inference runner
+├── traffic.py           # Traffic signal system
+├── parked.py            # Wrong parking detection
+├── wrong_way.py         # Wrong-way detection
+├── accident.py          # Accident detection
+│
+├── models/              # Pretrained YOLO models
+│   ├── yolov8n.pt
+│   └── yolov8s.pt
+│
+├── outputs/             # Store processed videos & frames
+│
+├── media/               # Input images or videos
+│   ├── traffic_videos/
+│   ├── parking_videos/
+│   ├── wrongway_videos/
+│   └── accident_videos/
+│
+├── requirements.txt     # Python dependencies
+└── README.md
+```
 
-Hikvision DS-2CD1027G0-L industrial IP camera for reliable high-resolution outdoor monitoring
+---
 
-Software Pipeline:
+## **Preparing Media Files**
 
-Optimized YOLOv8 for density estimation and event detection
+Place videos or images in the **media/** folder:
 
-On-device decision engine for real-time traffic control
+* **Traffic:** `media/traffic_videos/`
+* **Wrong Parking:** `media/parking_videos/`
+* **Wrong Way:** `media/wrongway_videos/`
+* **Accidents:** `media/accident_videos/`
 
-Optional Firebase or MQTT integration for cloud-based alerts and remote updates
+Example:
 
-🔹 Deployment and Impact
-Presented to local government authorities and regional leadership.
+```text
+media/
+├── traffic_videos/traffic1.mp4
+├── parking_videos/parking1.mp4
+├── wrongway_videos/road1.mp4
+└── accident_videos/accident1.mp4
+```
 
-Gained official permission to deploy and test the system on real urban roads under live traffic conditions.
+---
 
-Demonstrated significant potential for reducing congestion, improving emergency response, and supporting data-driven urban planning.
+## **Running the System**
 
-![1751322872545](https://github.com/user-attachments/assets/d242370e-2f2b-4939-986b-6283d12c19db)
+### **Traffic Light Optimization**
 
-![1751322872662](https://github.com/user-attachments/assets/676c207b-8073-4e02-98af-04dcc106bcb4)
+```bash
+python inference.py --mode traffic --source media/traffic_videos/traffic1.mp4
+```
+
+### **Wrong Parking Detection**
+
+```bash
+python inference.py --mode parking --source media/parking_videos/parking1.mp4 --output outputs/parking_result.mp4
+```
+
+### **Wrong Way Detection**
+
+```bash
+python inference.py --mode wrongway --source media/wrongway_videos/road1.mp4 --output outputs/wrongway_result.mp4
+```
+
+### **Accident Detection**
+
+```bash
+python inference.py --mode accident --source media/accident_videos/accident1.mp4 --output outputs/accident_result.mp4
+```
+
+---
+
+## **Firebase Integration (Optional)**
+
+* Configure Firebase in `traffic.py` or `accident.py`:
+
+```python
+cred = credentials.Certificate("path/to/your/firebase.json")
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://your-database-url.firebaseio.com/'
+})
+```
+
+* Status updates are automatically sent:
+
+```python
+update_firebase_status('road1', 'Accident')
+```
+
+---
+
+
+
