@@ -1,0 +1,9 @@
+opencv-python>=4.7.0
+torch>=2.1.0
+torchvision>=0.16.0
+ultralytics>=8.0.150
+fastapi>=0.104.0
+uvicorn>=0.23.0
+firebase-admin>=6.1.0
+deep-sort-realtime>=1.6.0
+numpy>=1.26.0
