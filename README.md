@@ -20,6 +20,44 @@ The system combines **YOLOv8 object detection**, **DeepSORT tracking**, and opti
 
 ---
 
+## **Hardware & Prototype**
+
+The project has **two phases**: **prototype** and **full-scale embedded deployment**.
+
+### **Prototype Phase**
+
+Used for testing the algorithms on a small scale:
+
+| Component              | Purpose                                                             |
+| ---------------------- | ------------------------------------------------------------------- |
+| ESP32                  | Simulate traffic light signals on small-scale intersections         |
+| Toy vehicles           | Represent real traffic for testing traffic optimization logic       |
+| Tapo C100 camera       | Capture video of toy traffic environment for detection and analysis |
+| Laptop                 | Run YOLO inference and simulate control logic                       |
+| Lightweight YOLO model | Detect vehicles in real-time on the prototype setup                 |
+
+---
+
+### **Full-Scale Embedded System (Funded Upgrade)**
+
+Planned for on-road deployment:
+
+| Component                          | Purpose                                                                                |
+| ---------------------------------- | -------------------------------------------------------------------------------------- |
+| Raspberry Pi 5 (8GB RAM)           | On-device AI inference and traffic control                                             |
+| Hikvision DS-2CD1027G0-L IP camera | Outdoor video capture for real-time traffic monitoring                                 |
+| Traffic lights                     | Controlled by Raspberry Pi for dynamic signal changes                                  |
+| YOLOv8 (optimized)                 | Real-time vehicle detection and traffic density estimation                             |
+| Firebase or MQTT                   | Optional cloud integration for status reporting, alerts, and dashboards                |
+| Mobile App                         | Allows citizens to monitor traffic and authorities to receive violations and anomalies |
+
+---
+
+💡 **Note:**
+The **accident detection module** is currently at **prototype stage**, using camera feeds and abnormal motion detection. Full-scale integration with embedded hardware will be part of the next phase.
+
+---
+
 ## **Architecture**
 
 ```text
