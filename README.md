@@ -51,10 +51,11 @@ Planned for on-road deployment:
 | Firebase or MQTT                   | Optional cloud integration for status reporting, alerts, and dashboards                |
 | Mobile App                         | Allows citizens to monitor traffic and authorities to receive violations and anomalies |
 
+![Full-Scale](media/hardware.jpg)
 ---
 
 💡 **Note:**
-The **accident detection module** is currently at **prototype stage**, using camera feeds and abnormal motion detection. Full-scale integration with embedded hardware will be part of the next phase.
+The **accident detection module** is currently at **prototype stage** and will be part of the next phase.
 
 ---
 
