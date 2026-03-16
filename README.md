@@ -147,7 +147,9 @@ python inference.py --mode wrongway --source media/wrongway_videos/road1.mp4 --o
 ```bash
 python inference.py --mode accident --source media/accident_videos/accident1.mp4 --output outputs/accident_result.mp4
 ```
-
+![Traffic Example](media/traffic.png)
+![Wrong Way Example](media/wrong_way.png)
+![wrong parked Example](media/wrong_parked.png)
 ---
 
 ## **Firebase Integration (Optional)**
@@ -167,7 +169,12 @@ firebase_admin.initialize_app(cred, {
 update_firebase_status('road1', 'Accident')
 ```
 
+
+
 ---
 
+## **Project Book and Demo Video**
 
+**Book**[https://drive.google.com/file/d/11Q4jhJbcuXXnUtl_lyaJlae39yWCtJ-m/view?usp=sharing]
 
+**Video**[https://drive.google.com/file/d/1aWYLqYVTHfPA0joM5Z6hLrywhT6NqOr_/view?usp=sharing]
