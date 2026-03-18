@@ -40,7 +40,7 @@ Used for testing the algorithms on a small scale:
 
 ### **Full-Scale Embedded System (Funded Upgrade)**
 
-Planned for on-road deployment:
+for on-road deployment:
 
 | Component                          | Purpose                                                                                |
 | ---------------------------------- | -------------------------------------------------------------------------------------- |
