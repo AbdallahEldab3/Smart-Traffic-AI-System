@@ -211,7 +211,18 @@ update_firebase_status('road1', 'Accident')
 
 
 ---
+## **Demo phase model results**
+![F1 curve](media/F1_curve.png)
+![PR curve](media/PR_curve.png)
+![P curve](media/P_curve.png)
+![R curve](media/R_curve.png)
+![confusion matrix](media/confusion_matrix.png)
+![confusion matrix normalized](media/confusion_matrix_normalized.png)
+![results](media/results.png)
+![labels](media/labels.jpg)
+![labels correlogram](media/labels_correlogram.jpg)
 
+---
 ## **Project Book and Demo Video**
 
 **Book**[https://drive.google.com/file/d/11Q4jhJbcuXXnUtl_lyaJlae39yWCtJ-m/view?usp=sharing]
